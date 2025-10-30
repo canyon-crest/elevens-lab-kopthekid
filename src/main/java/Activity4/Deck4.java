@@ -64,7 +64,7 @@ public class Deck4 {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		this.size = 0; // remove me
+		this.shuffle(); // remove me
 	}
 
 	/**

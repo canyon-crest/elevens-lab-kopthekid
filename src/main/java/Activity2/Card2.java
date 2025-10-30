@@ -1,4 +1,7 @@
 package Activity2;
+
+import java.util.ArrayList;
+
 /**
  * Card.java
  *

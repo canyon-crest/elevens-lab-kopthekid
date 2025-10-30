@@ -29,11 +29,19 @@ public class Deck2 {
 	 * @param ranks is an array containing all of the card ranks.
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
+	 * rank, suit, pt
 	 */
 	public Deck2(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-	}
+		for(int i =1; i<=suits.length;i++) {
+			String curSuit = suits[i];
+			for(int j =1; j<=ranks.length;j++) {
+				String curRank = ranks[j];
+				cards.add(new Card2(curRank, curSuit, values[j]));
+			}
 
+		}
+	}
 
 	/**
 	 * Determines if this deck is empty (no undealt cards).
@@ -41,7 +49,7 @@ public class Deck2 {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return true;
+		return cards.size() ==0;
 	}
 
 	/**
@@ -50,7 +58,7 @@ public class Deck2 {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return -1;
+		return cards.size();
 	}
 
 	/**
@@ -68,8 +76,8 @@ public class Deck2 {
 	 */
 	public Card2 deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return new Card2("","",-1);
-	}
+		return cards.remove(0);
+		}
 
 	/**
 	 * Generates and returns a string representation of this deck.
@@ -106,3 +114,5 @@ public class Deck2 {
 		return rtn;
 	}
 }
+
+
