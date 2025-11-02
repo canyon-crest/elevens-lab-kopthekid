@@ -64,7 +64,13 @@ public class Deck4 {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		this.shuffle(); // remove me
+	       ArrayList<Card4> shuffled = new ArrayList<Card4>();
+	        while (!cards.isEmpty()) {
+	            int rand = (int) (Math.random() * cards.size());
+	            shuffled.add(cards.remove(rand));
+	        }
+	        cards = shuffled;
+	        size = cards.size();
 	}
 
 	/**

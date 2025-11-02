@@ -31,17 +31,25 @@ public class Deck2 {
 	 * @param values is an array containing all of the card point values.
 	 * rank, suit, pt
 	 */
-	public Deck2(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		for(int i =1; i<=suits.length;i++) {
-			String curSuit = suits[i];
-			for(int j =1; j<=ranks.length;j++) {
-				String curRank = ranks[j];
-				cards.add(new Card2(curRank, curSuit, values[j]));
-			}
-
-		}
-	}
+//	public Deck2(String[] ranks, String[] suits, int[] values) {
+//		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+//		for(int i =0; i<suits.length;i++) {
+//			String curSuit = suits[i];
+//			for(int j =0; j<ranks.length;j++) {
+//				String curRank = ranks[j];
+//				cards.add(new Card2(curRank, curSuit, values[j]));
+//			}
+//
+//		}
+//	}
+    public Deck2(String[] ranks, String[] suits, int[] values) {
+        cards = new ArrayList<Card2>();
+        for (String suit : suits) {
+            for (int i = 0; i < ranks.length; i++) {
+                cards.add(new Card2(ranks[i], suit, values[i]));
+            }
+        }
+    }
 
 	/**
 	 * Determines if this deck is empty (no undealt cards).

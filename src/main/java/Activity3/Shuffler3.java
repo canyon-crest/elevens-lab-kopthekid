@@ -2,6 +2,7 @@ package Activity3;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -55,22 +56,39 @@ public class Shuffler3 {
 	 * the cards in one half with the cards in the other.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
+//	public static void perfectShuffle(int[] values) {
+//		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+//		int[] shuffled = new int[values.length];
+//		int k =0;
+//		for (int j =0; j<25; j++) {
+//			shuffled[k] = values[j];
+//			k = k+2;
+//		}
+//		k=1;
+//		for (int j =26; j<52; j++) {
+//			shuffled[k] = values[j];
+//			k = k+2;
+//		}
+//		values = shuffled;
+//	}
 	public static void perfectShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		int[] shuffled = new int[values.length];
-		int k =0;
-		for (int j =0; j<25; j++) {
-			shuffled[k] = values[j];
-			k = k+2;
-		}
-		k=1;
-		for (int j =26; j<52; j++) {
-			shuffled[k] = values[j];
-			k = k+2;
-		}
-		values = shuffled;
-	}
-
+        int n = values.length;
+        int[] shuffled = new int[n];
+        
+        int k = 0;
+        for (int j = 0; j < n/2; j++) {
+            shuffled[k] = values[j];
+            k += 2;
+        }
+        
+        k = 1;
+        for (int j = n/2; j < n; j++) {
+            shuffled[k] = values[j];
+            k += 2;
+        }
+        
+        System.arraycopy(shuffled, 0, values, 0, n);
+    }
 	/**
 	 * Apply an "efficient selection shuffle" to the argument.
 	 * The selection shuffle algorithm conceptually maintains two sequences
@@ -78,22 +96,34 @@ public class Shuffler3 {
 	 * cards (initially the entire deck). It repeatedly does the following until
 	 * all cards have been selected: randomly remove a card from those not yet
 	 * selected and add it to the selected cards.
-	 * An efficient version of this algorithm makes use of arrays to avoid
+	 * An efficient version of this algorithjd
 	 * searching for an as-yet-unselected card.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
-	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		int[] shuffled = new int[values.length];
-		for (int k=0; k<52; k++) {
-			int j = (int) (Math.random() * 52);
-			while (values[j] == -1  ) {
-				j = (int) (Math.random() * 52);
-			}
-			shuffled[k] = values[j];
-			values[j] = -1;
-		}
-		values = shuffled;
-		
-	}
+//	public static void selectionShuffle(int[] values) {
+//		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+//		int[] shuffled = new int[values.length];
+//		for (int k=0; k<52; k++) {
+//			int j = (int) (Math.random() * 52);
+//			while (values[j] == -1  ) {
+//				j = (int) (Math.random() * 52);
+//			}
+//			shuffled[k] = values[j];
+//			values[j] = -1;
+//		}
+//		values = shuffled;
+//		
+//	}
+	public static void selectionShuffle(int[] cards) {
+        Random rand = new Random();
+        int n = cards.length;
+        
+        for (int k = n - 1; k >= 1; k--) {
+            int r = rand.nextInt(k + 1);
+            
+            int temp = cards[k];
+            cards[k] = cards[r];
+            cards[r] = temp;
+        }
+    }
 }

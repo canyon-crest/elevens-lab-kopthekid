@@ -13,6 +13,7 @@ public class DeckTester4 {
 		String[] suits = {"blue", "red"};
 		int[] pointValues = {11, 12, 13};
 		Deck4 d = new Deck4(ranks, suits, pointValues);
+		d.shuffle();
 
 		System.out.println("**** Original Deck Methods ****");
 		System.out.println("  toString:\n" + d.toString());
