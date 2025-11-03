@@ -10,7 +10,7 @@ public class ThirteensBoard10 extends Board10 {
 	/**
 	 * The size (number of cards) on the board.
 	 */
-	private static final int BOARD_SIZE = 13;  // Changed from 9 to 13
+	private static final int BOARD_SIZE = 13;  
 
 	/**
 	 * The ranks of the cards for this game to be sent to the deck.
@@ -28,7 +28,7 @@ public class ThirteensBoard10 extends Board10 {
 	 * The values of the cards for this game to be sent to the deck.
 	 */
 	private static final int[] POINT_VALUES =
-		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};  // Changed: face cards now have values
+		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}; 
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -54,9 +54,9 @@ public class ThirteensBoard10 extends Board10 {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		if (selectedCards.size() == 2) {
-			return containsPairSum13(selectedCards);  // Changed to 13
-		} else if (selectedCards.size() == 1) {  // Changed: single card selection
-			return containsKing(selectedCards);   // Changed to single king check
+			return containsPairSum13(selectedCards); 
+		} else if (selectedCards.size() == 1) {  
+			return containsKing(selectedCards);   
 		} else {
 			return false;
 		}
@@ -72,7 +72,7 @@ public class ThirteensBoard10 extends Board10 {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		List<Integer> cIndexes = cardIndexes();
-		return containsPairSum13(cIndexes) || containsKing(cIndexes);  // Changed to 13 and king
+		return containsPairSum13(cIndexes) || containsKing(cIndexes);  
 	}
 
 	/**
@@ -83,12 +83,12 @@ public class ThirteensBoard10 extends Board10 {
 	 * @return true if the board entries in selectedCards
 	 *              contain an 13-pair; false otherwise.
 	 */
-	private boolean containsPairSum13(List<Integer> selectedCards) {  // Renamed to 13
+	private boolean containsPairSum13(List<Integer> selectedCards) { 
 		for (int sk1 = 0; sk1 < selectedCards.size(); sk1++) {
 			int k1 = selectedCards.get(sk1).intValue();
 			for (int sk2 = sk1 + 1; sk2 < selectedCards.size(); sk2++) {
 				int k2 = selectedCards.get(sk2).intValue();
-				if (cardAt(k1).pointValue() + cardAt(k2).pointValue() == 13) {  // Changed to 13
+				if (cardAt(k1).pointValue() + cardAt(k2).pointValue() == 13) {
 					return true;
 				}
 			}
@@ -104,7 +104,7 @@ public class ThirteensBoard10 extends Board10 {
 	 * @return true if the board entries in selectedCards
 	 *              include a king; false otherwise.
 	 */
-	private boolean containsKing(List<Integer> selectedCards) {  // New method for single king
+	private boolean containsKing(List<Integer> selectedCards) { 
 		for (Integer kObj : selectedCards) {
 			int k = kObj.intValue();
 			if (cardAt(k).rank().equals("king")) {
