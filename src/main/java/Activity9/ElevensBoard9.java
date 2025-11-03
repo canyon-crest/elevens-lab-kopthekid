@@ -54,7 +54,11 @@ public class ElevensBoard9 extends Board9 {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() == 2) {
+			return containsPairSum11(selectedCards);
+		} else if (selectedCards.size() == 3) {
+			return containsJQK(selectedCards);
+		}
 		return false;
 	}
 
@@ -68,8 +72,8 @@ public class ElevensBoard9 extends Board9 {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		return false;
+		List<Integer> cardIndexes = cardIndexes();
+		return containsPairSum11(cardIndexes) || containsJQK(cardIndexes);
 	}
 
 	/**
@@ -81,7 +85,17 @@ public class ElevensBoard9 extends Board9 {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for (int i = 0; i < selectedCards.size() - 1; i++) {
+			for (int j = i + 1; j < selectedCards.size(); j++) {
+				Card9 card1 = cardAt(selectedCards.get(i));
+				Card9 card2 = cardAt(selectedCards.get(j));
+				
+				if (card1 != null && card2 != null && 
+					card1.pointValue() + card2.pointValue() == 11) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -94,7 +108,24 @@ public class ElevensBoard9 extends Board9 {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		return false;
+		boolean hasJack = false;
+		boolean hasQueen = false;
+		boolean hasKing = false;
+		
+		for (Integer index : selectedCards) {
+			Card9 card = cardAt(index);
+			if (card != null) {
+				String rank = card.rank();
+				if (rank.equals("jack")) {
+					hasJack = true;
+				} else if (rank.equals("queen")) {
+					hasQueen = true;
+				} else if (rank.equals("king")) {
+					hasKing = true;
+				}
+			}
+		}
+		
+		return hasJack && hasQueen && hasKing;
 	}
-}
+} 
