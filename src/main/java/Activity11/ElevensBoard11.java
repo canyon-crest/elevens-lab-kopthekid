@@ -106,30 +106,57 @@ public class ElevensBoard11 extends Board11 {
 	 * @return a list of the indexes of a JQK, if a JQK was found;
 	 *         an empty list, if a JQK was not found.
 	 */
+//	private List<Integer> findJQK(List<Integer> selectedCards) {
+//		/* *** TO BE CHANGED INTO findJQK IN ACTIVITY 11 *** */
+//		boolean foundJack = false;
+//		boolean foundQueen = false;
+//		boolean foundKing = false;
+//		List<Integer> combo = new ArrayList<Integer>();
+//		for (Integer kObj : selectedCards) {
+//			int k = kObj.intValue();
+//			if (cardAt(k).rank().equals("jack")) {
+//				foundJack = true;
+//				combo.add(k);
+//			} else if (cardAt(k).rank().equals("queen")) {
+//				foundQueen = true;
+//				combo.add(k);
+//			} else if (cardAt(k).rank().equals("king")) {
+//				foundKing = true;
+//				combo.add(k);
+//			}
+//			
+//		}
+//		 
+//		return combo;
+//	}
 	private List<Integer> findJQK(List<Integer> selectedCards) {
-		/* *** TO BE CHANGED INTO findJQK IN ACTIVITY 11 *** */
-		boolean foundJack = false;
-		boolean foundQueen = false;
-		boolean foundKing = false;
-		List<Integer> combo = new ArrayList<Integer>();
-		for (Integer kObj : selectedCards) {
-			int k = kObj.intValue();
-			if (cardAt(k).rank().equals("jack")) {
-				foundJack = true;
-				combo.add(k);
-			} else if (cardAt(k).rank().equals("queen")) {
-				foundQueen = true;
-				combo.add(k);
-			} else if (cardAt(k).rank().equals("king")) {
-				foundKing = true;
-				combo.add(k);
-			}
-			
-		}
-		 
-		return combo;
+	    boolean foundJack = false;
+	    boolean foundQueen = false;
+	    boolean foundKing = false;
+	    List<Integer> combo = new ArrayList<Integer>();
+	    
+	    for (Integer kObj : selectedCards) {
+	        int k = kObj.intValue();
+	        String rank = cardAt(k).rank();
+	        if (rank.equals("jack") && !foundJack) {
+	            foundJack = true;
+	            combo.add(k);
+	        } else if (rank.equals("queen") && !foundQueen) {
+	            foundQueen = true;
+	            combo.add(k);
+	        } else if (rank.equals("king") && !foundKing) {
+	            foundKing = true;
+	            combo.add(k);
+	        }
+	    }
+	    
+	    // Only return if we found all three
+	    if (foundJack && foundQueen && foundKing) {
+	        return combo;
+	    } else {
+	        return new ArrayList<Integer>(); // Return empty list if incomplete
+	    }
 	}
-
 	/**
 	 * Looks for a legal play on the board.  If one is found, it plays it.
 	 * @return true if a legal play was found (and made); false othewise.
